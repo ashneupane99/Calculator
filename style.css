@@ -133,3 +133,20 @@ font-size: 1.5rem;
     grid-area: equals;
 
 }
+.prank{
+ animation: shake .5s ease-in;
+}
+@keyframes shake {
+    0%{
+        transform: translateX(10px)
+    }
+    50%{
+        transform: translateX(-10px)
+    }
+    80%{
+        transform: translateX(10px)
+    }
+    100%{
+        transform: translateX(-10px)
+    }
+}

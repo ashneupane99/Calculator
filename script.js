@@ -9,11 +9,16 @@ const displayElm = document.querySelector(".display")
 let strToDisplay = ""
 const operators = ["%", "/", "*", "-", "+"]
 let lastOperator = ""
+
+const audio = new Audio("./failure1.mp3")
 btns.forEach((btn, i)=>{
 //attach click event listener
 btn.addEventListener("click", ()=> {
     let val = btn.innerText;
-   
+  
+    displayElm.style.background = ""
+    displayElm.style.color = "black"
+    displayElm.classList.remove("prank")
     
 
     if (operators.includes(val) && !strToDisplay.length )
@@ -66,6 +71,20 @@ const display = (str) =>{
 }
 
 const total = () => {
-    const ttl = eval(strToDisplay)
+    const pk =randomNumber()
+    if (pk){
+        audio.play()
+        displayElm.style.background = "red"
+        displayElm.style.color = "white"
+        displayElm.classList.add("prank")
+    }
+    const ttl = eval(strToDisplay) + pk
+    
     display(ttl)
+    strToDisplay = ttl.toString()
+}
+
+const randomNumber = () => {
+    const num = Math.round(Math.random()*10)
+    return num <=10 ? num:0
 }
